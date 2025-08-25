@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /smev-testing
+
+
+
+
+
+
+org:
+  springframework:
+    boot:
+      logging:
+        Loglevel: debug, info, error
+
+logging:
+  level:
+    org.springframework.web: debug
+  config:
+    file: logback-spring.xml
+#    root: debug
