@@ -104,8 +104,29 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-
+<!--                <xs:element name="PropertyList">-->
+<!--                    <xs:complexType>-->
+<!--                        <xs:sequence>-->
+<!--                            <xs:element maxOccurs="unbounded" ref="types:property"/>-->
+<!--                        </xs:sequence>-->
+<!--                    </xs:complexType>-->
+<!--                </xs:element>-->
+<!--                <xs:element name="property">-->
+<!--                    <xs:complexType>-->
+<!--                        <xs:sequence>-->
+<!--                            <xs:element ref="types:propertyName"/>-->
+<!--                            <xs:element ref="types:propertyType"/>-->
+<!--                            <xs:element ref="types:propertyValue"/>-->
+<!--                        </xs:sequence>-->
+<!--                    </xs:complexType>-->
+<!--                </xs:element>-->
+<!--                <xs:element name="propertyName" type="xs:NCName"/>-->
+<!--                <xs:element name="propertyType" type="xs:NCName"/>-->
+<!--                <xs:element name="propertyValue" type="xs:string"/>-->
             </xs:sequence>
+
         </xs:complexType>
+
     </xs:element>
+
 </xs:schema>

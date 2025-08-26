@@ -3,13 +3,14 @@ package ru.rec.cmev.service;
 import _class.singl.x.types._4_0.SMEVSimleRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.cxf.common.jaxb.NamespaceMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.rec.cmev.dto.AttachInfoTypeDto;
 import ru.rec.cmev.dto.ContactInfoTypeDto;
 import ru.rec.cmev.dto.SmevRequestDto;
 import ru.rec.cmev.mappers.MultipartFileMapper;
-import org.apache.cxf.common.jaxb.NamespaceMapper;
+import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -32,7 +33,7 @@ import static java.util.Objects.nonNull;
 @RequiredArgsConstructor
 public class SmevRequestService {
 
-    public static final String KIF_NAMESPACE = "urn://x-artefacts-fns-svkpnds/root/310-65/4.0.0";
+    public static final String KIF_NAMESPACE = "urn://x-singl-class-/types/4.0.0";
 
 
     public MultipartFile execute() throws DatatypeConfigurationException, JAXBException {
@@ -87,7 +88,12 @@ public class SmevRequestService {
             marshaller.setProperty(Marshaller.JAXB_ENCODING, UTF_8.name());
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             if (nonNull(urisToPrefixes)) {
-                marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", new NamespaceMapper(urisToPrefixes));
+                marshaller.setProperty("com.sun.xml.bind.namespacePrefixMapper", new NamespacePrefixMapper() {
+                    @Override
+                    public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix) {
+                        return null;
+                    }
+                });
             }
             if (nonNull(schema)) {
                 marshaller.setSchema(schema);
@@ -97,6 +103,9 @@ public class SmevRequestService {
             log.error("Ошибка преобразования объекта", e);
             throw e;
         }
+        System.out.println("------------------------------");
+        System.out.println(sw);
+        System.out.println("------------------------------");
         return sw.toString();
     }
 
@@ -104,6 +113,13 @@ public class SmevRequestService {
         SMEVSimleRequest requestSmev = new SMEVSimleRequest();
 
         SMEVSimleRequest.AnyAttribute anyAttribute = new SMEVSimleRequest.AnyAttribute();
+        for (Map.Entry<String, String> entry : request.getAnyAttribute().entrySet()) {
+
+            SMEVSimleRequest.AnyAttribute.Entry value= new SMEVSimleRequest.AnyAttribute.Entry();
+            value.setKey(entry.getKey());
+            value.setValue(entry.getValue());
+            anyAttribute.getEntry().add(value);
+        }
 
         requestSmev.setAnyAttribute(anyAttribute);
 

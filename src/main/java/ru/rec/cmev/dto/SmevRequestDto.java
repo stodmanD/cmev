@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Data
@@ -15,7 +16,7 @@ public class SmevRequestDto {
 
     protected AttachInfoTypeDto attachInfoType;
 
-    protected Map <String,String> anyAttribute;
+    protected HashMap <String,String> anyAttribute;
 
 
 }
