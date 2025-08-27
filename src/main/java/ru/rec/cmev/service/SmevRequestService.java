@@ -51,10 +51,17 @@ public class SmevRequestService {
                 .docName("OOOOOOOOOOOOOO!")
                 .build();
 
-        HashMap<String, String> anyAttribute = new HashMap<>();
-        anyAttribute.put("person", "Ivanov");
-        anyAttribute.put("surname", "Petro");
-        anyAttribute.put("Nuvber", "4564564");
+        HashMap<String, SmevRequestDto.TypeAndValue> anyAttribute = new HashMap<>();
+
+        anyAttribute.put("person", SmevRequestDto.TypeAndValue.builder()
+                .type("String")
+                .value("Ivanov").build());
+        anyAttribute.put("surname", SmevRequestDto.TypeAndValue.builder()
+                .type("String")
+                .value("Petro").build());
+        anyAttribute.put("Number", SmevRequestDto.TypeAndValue.builder()
+                .type("int")
+                .value("4564564").build());
 
 
         SmevRequestDto requestDto = SmevRequestDto.builder()
@@ -113,11 +120,12 @@ public class SmevRequestService {
         SMEVSimleRequest requestSmev = new SMEVSimleRequest();
 
         SMEVSimleRequest.AnyAttribute anyAttribute = new SMEVSimleRequest.AnyAttribute();
-        for (Map.Entry<String, String> entry : request.getAnyAttribute().entrySet()) {
+        for (Map.Entry<String, SmevRequestDto.TypeAndValue> entry : request.getAnyAttribute().entrySet()) {
 
-            SMEVSimleRequest.AnyAttribute.Entry value= new SMEVSimleRequest.AnyAttribute.Entry();
-            value.setKey(entry.getKey());
-            value.setValue(entry.getValue());
+            SMEVSimleRequest.AnyAttribute.Entry value = new SMEVSimleRequest.AnyAttribute.Entry();
+            value.setName(entry.getKey());
+            value.setType(entry.getValue().getType());
+            value.setValue(entry.getValue().getValue());
             anyAttribute.getEntry().add(value);
         }
 

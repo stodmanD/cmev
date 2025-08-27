@@ -14,9 +14,14 @@ public class SmevRequestDto {
 
     private ContactInfoTypeDto contactInfoType;
 
-    protected AttachInfoTypeDto attachInfoType;
+    private AttachInfoTypeDto attachInfoType;
 
-    protected HashMap <String,String> anyAttribute;
+    protected HashMap<String, TypeAndValue> anyAttribute;
 
-
+    @Data
+    @Builder
+    public static class TypeAndValue {
+        private String type;
+        private String value;
+    }
 }
