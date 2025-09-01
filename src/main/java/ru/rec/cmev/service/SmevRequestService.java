@@ -3,7 +3,6 @@ package ru.rec.cmev.service;
 import _class.singl.x.types._4_0.SMEVSimleRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.cxf.common.jaxb.NamespaceMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.rec.cmev.dto.AttachInfoTypeDto;
@@ -22,7 +21,6 @@ import javax.xml.validation.Schema;
 import java.io.StringWriter;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -67,7 +65,7 @@ public class SmevRequestService {
         SmevRequestDto requestDto = SmevRequestDto.builder()
                 .contactInfoType(contactInfoType)
                 .attachInfoType(attachInfoType)
-                .anyAttribute(anyAttribute)
+                .anyData(anyAttribute)
                 .build();
 
         return createDataMessage(requestDto);
@@ -119,17 +117,17 @@ public class SmevRequestService {
     public SMEVSimleRequest createSMEVSimleRequest(SmevRequestDto request) throws DatatypeConfigurationException {
         SMEVSimleRequest requestSmev = new SMEVSimleRequest();
 
-        SMEVSimleRequest.AnyAttribute anyAttribute = new SMEVSimleRequest.AnyAttribute();
-        for (Map.Entry<String, SmevRequestDto.TypeAndValue> entry : request.getAnyAttribute().entrySet()) {
+        SMEVSimleRequest.AnyData anyAttribute = new SMEVSimleRequest.AnyData();
+        for (Map.Entry<String, SmevRequestDto.TypeAndValue> entry : request.getAnyData().entrySet()) {
 
-            SMEVSimleRequest.AnyAttribute.Entry value = new SMEVSimleRequest.AnyAttribute.Entry();
+            SMEVSimleRequest.AnyData.Entry value = new SMEVSimleRequest.AnyData.Entry();
             value.setName(entry.getKey());
             value.setType(entry.getValue().getType());
             value.setValue(entry.getValue().getValue());
             anyAttribute.getEntry().add(value);
         }
 
-        requestSmev.setAnyAttribute(anyAttribute);
+        requestSmev.setAnyData(anyAttribute);
 
         SMEVSimleRequest.AttachInfoType attachInfoType = new SMEVSimleRequest.AttachInfoType();
         attachInfoType.setDescription(request.getAttachInfoType().getDescription());

@@ -130,7 +130,18 @@
                             </sources>
                         </configuration>
                     </execution>
-
+                    <execution>
+                        <id>empty</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/resources/kif/sampleKif.xsd</source>
+                            </sources>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
