@@ -11,13 +11,21 @@ import java.util.Map;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface MapToObjectMapper {
     public static final ObjectMapper objectMapper = new ObjectMapper();
+
     @Mappings({
             @Mapping(target = "anyData", qualifiedByName = "mapToXml")
     })
     SMEVEmptyRequest toModificationInfoMap(SmevRequestEmptyDataDto request);
 
+    //    @Named("mapToXml")
+//    default Object mapToXml(Map<String,Object> req) {
+//        return objectMapper.convertValue(req, Object.class);
+//    }
     @Named("mapToXml")
-    default Object mapToXml(Map<String,Object> req) {
-        return objectMapper.convertValue(req, Object.class);
+    default SMEVEmptyRequest.AnyData mapToXml(Map<String, Object> req) {
+        Object entry = objectMapper.convertValue(req, Object.class).toString();
+        SMEVEmptyRequest.AnyData data = new SMEVEmptyRequest.AnyData();
+        data.setEntry(entry);
+        return data;
     }
 }

@@ -108,9 +108,7 @@ public class SmevRequestService {
             log.error("Ошибка преобразования объекта", e);
             throw e;
         }
-        System.out.println("------------------------------");
-        System.out.println(sw);
-        System.out.println("------------------------------");
+
         return sw.toString();
     }
 
