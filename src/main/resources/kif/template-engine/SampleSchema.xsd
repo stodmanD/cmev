@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by VI (GNIVC FNS RF) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fns="urn://empty-xsd"
+           targetNamespace="urn://empty-xsd" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <!--==========================================  Структурированные типы  ==========================================-->
+    <xs:element name="SMEVEmptyRequest">
+        <xs:annotation>
+            <xs:documentation>Запрос о представлении сведений из книги продаж об операциях, отражаемых за истекший
+                налоговый период в налоговой декларации по налогу на добавленную стоимость
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ContactInfoType">
+                    <xs:annotation>
+                        <xs:documentation>Контактная информация</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="MailingAddress" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="ru">Почтовый адрес</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+
+                            <xs:element name="Email" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="ru">Адрес эл. почты</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+
+                            <xs:element name="PhoneNumber" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="ru">Номер телефона</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="AttachInfoType">
+                    <xs:annotation>
+                        <xs:documentation>Сведения о вложении</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="DocCode" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>Код документа (служебное наименование/код/мнемоника)
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="DocName" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>Наименование документа</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="FileName" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>Имя файла документа</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="IsArchive" type="xs:boolean">
+                                <xs:annotation>
+                                    <xs:documentation>Передача в архиве</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="URI" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Путь к файлу в архиве</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="FileType" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>MIME-тип контента</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Description" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Описание</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="AnyData">
+                    <xs:annotation>
+                        <xs:documentation>Дополнительные атрибуты</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="entry" type="xs:string" >
+
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+</xs:schema>
