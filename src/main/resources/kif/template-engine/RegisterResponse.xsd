@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn://another-xsd"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <xs:element name="RegisterResponse">
+        <xs:annotation>
+            <xs:documentation>Корневой элемент ответного заголовка</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RequestReceived" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Дата и время получения заявления</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:dateTime"/>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="RecNumber" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Номер заявления экспортера в ИС ОО</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="CodeStatus" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Код статуса обработки</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="999"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

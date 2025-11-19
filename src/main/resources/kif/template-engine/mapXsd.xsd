@@ -1,0 +1,295 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://tor.knd.evolenta.ru/concentrator_appeals/1.0.8"
+            targetNamespace="http://tor.knd.evolenta.ru/concentrator_appeals/1.0.8" elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+    <!--  Common types  -->
+    <!--  Simple string types -->
+    <xsd:simpleType name="string">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-6">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="6"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-9">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="9"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-10">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="10"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-12">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="12"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-13">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="13"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-15">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-20">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="20"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-50">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="50"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-100">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="100"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-150">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="150"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-250">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="250"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-500">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="500"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-1000">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="1000"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-2000">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="2000"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="string-4000">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="4000"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--  Other simple types -->
+    <xsd:simpleType name="SNILSType">
+        <xsd:annotation>
+            <xsd:documentation>СНИЛС</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:length value="11"/>
+            <xsd:pattern value="\d{11}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="NameType">
+        <xsd:annotation>
+            <xsd:documentation>Наименование атрибута</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="255"/>
+            <xsd:pattern value="[a-zA-Z_][a-zA-Z0-9_]{1,255}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="SexType">
+        <xsd:annotation>
+            <xsd:documentation>Пол</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="male"/>
+            <xsd:enumeration value="female"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--  Basic complex types -->
+    <xsd:complexType name="AttachInfoType">
+        <xsd:annotation>
+            <xsd:documentation>Сведения о вложении</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="DocCode" type="tns:string-100">
+                <xsd:annotation>
+                    <xsd:documentation>Код документа (служебное наименование/код/мнемоника)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="DocName" type="tns:string-1000">
+                <xsd:annotation>
+                    <xsd:documentation>Наименование документа</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="FileName" type="tns:string">
+                <xsd:annotation>
+                    <xsd:documentation>Имя файла документа</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IsArchive" type="xsd:boolean">
+                <xsd:annotation>
+                    <xsd:documentation>Передача в архиве</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="URI" type="tns:string-150" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Путь к файлу в архиве</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="FileType" type="tns:string-150" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>MIME-тип контента</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="Description" type="tns:string" minOccurs="0">
+
+            </xsd:element>
+            <xsd:element name="AnyTypeData" type="tns:AnyAttribute" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AnyData">
+        <xsd:annotation>
+            <xsd:documentation>Дополнительные данные</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="Data" type="tns:AnyAttribute" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AnyAttribute">
+        <xsd:sequence>
+            <xsd:element name="StringValue" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:simpleContent>
+                        <xsd:extension base="xsd:string">
+                            <xsd:attribute name="name" type="tns:string" use="required">
+                                <xsd:annotation>
+                                    <xsd:documentation>Наименование атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                            <xsd:attribute name="description" type="tns:string">
+                                <xsd:annotation>
+                                    <xsd:documentation>Описание атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                        </xsd:extension>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="IntegerValue" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:simpleContent>
+                        <xsd:extension base="xsd:integer">
+                            <xsd:attribute name="name" type="tns:string" use="required">
+                                <xsd:annotation>
+                                    <xsd:documentation>Наименование атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                            <xsd:attribute name="description" type="tns:string">
+                                <xsd:annotation>
+                                    <xsd:documentation>Описание атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                        </xsd:extension>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="BoolValue" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:simpleContent>
+                        <xsd:extension base="xsd:boolean">
+                            <xsd:attribute name="name" type="tns:string" use="required">
+                                <xsd:annotation>
+                                    <xsd:documentation>Наименование атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                            <xsd:attribute name="description" type="tns:string">
+                                <xsd:annotation>
+                                    <xsd:documentation>Описание атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                        </xsd:extension>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="DecimalValue" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:simpleContent>
+                        <xsd:extension base="xsd:decimal">
+                            <xsd:attribute name="name" type="tns:string" use="required">
+                                <xsd:annotation>
+                                    <xsd:documentation>Наименование атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                            <xsd:attribute name="description" type="tns:string">
+                                <xsd:annotation>
+                                    <xsd:documentation>Описание атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                        </xsd:extension>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="DateValue" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:simpleContent>
+                        <xsd:extension base="xsd:dateTime">
+                            <xsd:attribute name="name" type="tns:string" use="required">
+                                <xsd:annotation>
+                                    <xsd:documentation>Наименование атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                            <xsd:attribute name="description" type="tns:string">
+                                <xsd:annotation>
+                                    <xsd:documentation>Описание атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                        </xsd:extension>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ObjectValue" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:complexContent>
+                        <xsd:extension base="tns:AnyAttribute">
+                            <xsd:attribute name="name" type="xsd:string" use="required">
+                                <xsd:annotation>
+                                    <xsd:documentation>Наименование атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                            <xsd:attribute name="description" type="tns:string">
+                                <xsd:annotation>
+                                    <xsd:documentation>Описание атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                        </xsd:extension>
+                    </xsd:complexContent>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ArrayValue" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:complexContent>
+                        <xsd:extension base="tns:AnyAttribute">
+                            <xsd:attribute name="name" type="xsd:string" use="required">
+                                <xsd:annotation>
+                                    <xsd:documentation>Наименование атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                            <xsd:attribute name="description" type="tns:string">
+                                <xsd:annotation>
+                                    <xsd:documentation>Описание атрибута</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:attribute>
+                        </xsd:extension>
+                    </xsd:complexContent>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

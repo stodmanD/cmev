@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:kifRec="urn://any-attribute" targetNamespace="urn://any-attribute" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<!--    <xs:element name="AnyAttribute" abstract="true">-->
+<!--        <xs:annotation>-->
+<!--            <xs:documentation>Абстрактный элемент для substitutionGroup.</xs:documentation>-->
+<!--        </xs:annotation>-->
+<!--    </xs:element>-->
+
+<!--    <xs:element name="AnyAttribute" abstract="true">-->
+<!--        <xs:annotation>-->
+<!--            <xs:documentation>Абстрактный элемент для substitutionGroup.</xs:documentation>-->
+<!--        </xs:annotation>-->
+<!--        <xs:complexType>-->
+<!--            <xs:simpleContent>-->
+<!--                <xs:extension base="xs:string">-->
+<!--                    <xs:attribute name="name" type="xs:string" use="required"/>-->
+<!--                </xs:extension>-->
+<!--            </xs:simpleContent>-->
+<!--        </xs:complexType>-->
+<!--    </xs:element>-->
+
+    <xs:element name="AnyAttribute" abstract="true">
+    </xs:element>
+
+    <xs:complexType name="ValueType" abstract="true">
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="StringValueType">
+        <xs:complexContent>
+            <xs:extension base="kifRec:ValueType">
+<!--                <xs:simpleContent>-->
+<!--                    <xs:extension base="xs:string"/>-->
+<!--                </xs:simpleContent>-->
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="ComplexAttribute" abstract="true"/>
+
+
+    <!--    <xs:complexType name="ComplexAttribute">-->
+<!--        <xs:choice minOccurs="0" maxOccurs="unbounded">-->
+<!--            <xs:element ref="kifRec:AnyAttribute"/>-->
+<!--        </xs:choice>-->
+<!--        <xs:unique name="UniqueNames">-->
+<!--            <xs:selector xpath="kifRec:*"/>-->
+<!--            <xs:field xpath="@name"/>-->
+<!--        </xs:unique>-->
+<!--    </xs:complexType>-->
+</xs:schema>
